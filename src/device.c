@@ -1700,6 +1700,8 @@ void LIBUSB_CALL _uvc_status_callback(struct libusb_transfer *transfer) {
 
   uvc_error_t ret = libusb_submit_transfer(transfer);
   UVC_DEBUG("libusb_submit_transfer() = %d", ret);
+  /* As this is a callback, there's nowhere to return the error code to. */
+  (void) ret; /* Silence the warning about unused variables when debug is off. */
 
   UVC_EXIT_VOID();
 }
